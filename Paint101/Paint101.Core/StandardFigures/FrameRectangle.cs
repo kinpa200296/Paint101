@@ -23,17 +23,7 @@ namespace Paint101.Core.StandardFigures
 
         public override void Draw(ICanvas canvas)
         {
-            for (var i = _rect.X1; i <= _rect.X2; i++)
-            {
-                canvas[i, _rect.Y1] = _color;
-                canvas[i, _rect.Y2] = _color;
-            }
-
-            for (var j = _rect.Y1; j <= _rect.Y2; j++)
-            {
-                canvas[_rect.X1, j] = _color;
-                canvas[_rect.X2, j] = _color;
-            }
+            canvas.DrawFrameRectangle(_rect, _color);
         }
     }
 }

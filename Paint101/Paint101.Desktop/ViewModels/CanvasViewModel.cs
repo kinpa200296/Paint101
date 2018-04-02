@@ -7,7 +7,7 @@ namespace Paint101.Desktop.ViewModels
     public class CanvasViewModel
     {
         private FigureCollection _figureCollection;
-        private CanvasData _canvasData;
+        private CanvasProxy _canvasData;
 
 
         public ICanvasData CanvasData => _canvasData;
@@ -16,7 +16,7 @@ namespace Paint101.Desktop.ViewModels
         public CanvasViewModel()
         {
             _figureCollection = new FigureCollection();
-            _canvasData = new CanvasData(500, 500);
+            _canvasData = new CanvasProxy(500, 500);
 
             SeedDummyFigures();
         }

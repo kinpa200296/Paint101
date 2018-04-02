@@ -126,4 +126,12 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>mkdir $(ProjectDir)$(OutDir)Figures
+
+copy /y $(SolutionDir)FiguresOutput\*.dll $(ProjectDir)$(OutDir)Figures</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>rd /s /q $(ProjectDir)$(OutDir)Figures</PreBuildEvent>
+  </PropertyGroup>
 </Project>

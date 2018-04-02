@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Paint101.Api\Paint101.Api.csproj" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="mkdir $(SolutionDir)FiguresOutput&#xD;&#xA;&#xD;&#xA;copy /y $(ProjectDir)$(OutDir)$(ProjectName).dll $(SolutionDir)FiguresOutput" />
+  </Target>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="del $(SolutionDir)FiguresOutput\$(ProjectName).dll" />
+  </Target>
+
+</Project>
