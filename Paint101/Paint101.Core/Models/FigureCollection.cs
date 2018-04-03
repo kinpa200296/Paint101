@@ -1,37 +1,56 @@
 ﻿using Paint101.Api;
+using System;
 using System.Collections.Generic;
 
 namespace Paint101.Core
 {
-    public class FigureCollection
+    public class FigureCollection : IFigureCollection
     {
-        private List<Figure> _figures;
+        private List<FigureProxy> _figureProxies;
 
 
-        public IReadOnlyList<Figure> Figures => _figures;
+        public IReadOnlyList<FigureProxy> Figures => _figureProxies;
+
+
+        public event EventHandler<FigureProxy> Added;
+
+        public event EventHandler<FigureProxy> Updated;
+
+        public event EventHandler<FigureProxy> Removed;
 
 
         public FigureCollection()
         {
-            _figures = new List<Figure>();
+            _figureProxies = new List<FigureProxy>();
         }
 
 
-        public void AddFigure(Figure figure)
+        public void AddFigure(FigureProxy figureProxy)
         {
-            _figures.Add(figure);
+            _figureProxies.Add(figureProxy);
+            Added?.Invoke(this, figureProxy);
         }
 
-        public void RemoveFigure(Figure figure)
+        public void UpdateFigure(FigureProxy figureProxy)
         {
-            _figures.Remove(figure);
+            if (_figureProxies.IndexOf(figureProxy) != -1)
+            {
+                Updated?.Invoke(this, figureProxy);
+            }
+
+        }
+
+        public void RemoveFigure(FigureProxy figureProxy)
+        {
+            _figureProxies.Remove(figureProxy);
+            Removed?.Invoke(this, figureProxy);
         }
 
         public void DrawFigures(ICanvas canvas)
         {
-            foreach (var figure in _figures)
+            foreach (var figureProxy in _figureProxies)
             {
-                figure.Draw(canvas);
+                figureProxy.Draw(canvas);
             }
         }
     }

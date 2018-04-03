@@ -6,18 +6,18 @@ namespace Paint101.Desktop.ViewModels
 {
     public class FigureLibraryViewModel : PropertyChangedBase
     {
-        private IPluginLibrary _pluginLibrary;
+        private AppService _appService;
 
 
         public ObservableCollection<LibraryFigureViewModel> Figures { get; }
 
 
-        public FigureLibraryViewModel(IPluginLibrary pluginLibrary)
+        public FigureLibraryViewModel(AppService appService)
         {
-            _pluginLibrary = pluginLibrary;
+            _appService = appService;
 
             Figures = new ObservableCollection<LibraryFigureViewModel>();
-            foreach (IFigureDescriptor descriptor in _pluginLibrary.GetByType(PluginTypes.Figure))
+            foreach (IFigureDescriptor descriptor in _appService.PluginLibrary.GetByType(PluginTypes.Figure))
             {
                 Figures.Add(new LibraryFigureViewModel(descriptor));
             }
@@ -26,7 +26,10 @@ namespace Paint101.Desktop.ViewModels
 
         public void Add(object o)
         {
-            var a = 5;
+            if (o is LibraryFigureViewModel figure)
+            {
+                _appService.AddFigure(figure.Descriptor);
+            }
         }
     }
 }

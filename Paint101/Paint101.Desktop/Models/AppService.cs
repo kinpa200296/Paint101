@@ -1,15 +1,15 @@
-﻿using Paint101.Api;
-using Paint101.Core;
-using Paint101.Core.StandardFigures;
+﻿using Paint101.Core;
 using System.IO;
 
 namespace Paint101.Desktop
 {
     public class AppService
     {
-        public IPluginLibrary PluginLibrary { get; private set; }
+        public IPluginLibrary PluginLibrary { get; }
 
-        public FigureCollection FigureCollection { get; private set; }
+        public IFigureCollection FigureCollection { get; }
+
+        public ICanvasRenderer CanvasRenderer { get; private set; }
 
 
         public AppService()
@@ -17,7 +17,6 @@ namespace Paint101.Desktop
             CoreLoggerFactory.SetFactoryMethod(name => new NlogLoggerWrapper(name));
             PluginLibrary = new PluginLibrary();
             FigureCollection = new FigureCollection();
-            SeedDummyFigures();
         }
 
 
@@ -27,18 +26,27 @@ namespace Paint101.Desktop
             AssemblyLoader.LoadPlugins(Path.Combine(Directory.GetCurrentDirectory(), "Plugins"), PluginLibrary);
         }
 
-
-        private void SeedDummyFigures()
+        public void SetCanvasRenderer(ICanvasRenderer canvasRenderer)
         {
-            FigureCollection.AddFigure(new Line(new Point(100, 100), new Point(200, 100), PredefinedColors.Red));
-            FigureCollection.AddFigure(new Line(new Point(100, 100), new Point(200, 200), PredefinedColors.Green));
-            FigureCollection.AddFigure(new Line(new Point(100, 100), new Point(100, 200), PredefinedColors.Blue));
-            FigureCollection.AddFigure(new FrameRectangle(new Rect(100, 300, 200, 400), PredefinedColors.Black));
-            FigureCollection.AddFigure(new FilledRectangle(new Rect(300, 300, 400, 400), PredefinedColors.Black));
-            FigureCollection.AddFigure(new FrameEllipse(new Point(350, 150), 100, 100, PredefinedColors.Red));
-            FigureCollection.AddFigure(new FilledEllipse(new Point(350, 150), 80, 60, PredefinedColors.Green));
-            FigureCollection.AddFigure(new FrameTriangle(new Point(250, 250), new Point(300, 200), new Point(300, 300), PredefinedColors.Blue));
-            FigureCollection.AddFigure(new FrameTriangle(new Point(250, 250), new Point(200, 200), new Point(200, 300), PredefinedColors.Blue));
+            CanvasRenderer = canvasRenderer;
+        }
+
+        public void AddFigure(IFigureDescriptor descriptor)
+        {
+            var figureProxy = new FigureProxy(descriptor);
+            // configure
+            FigureCollection.AddFigure(figureProxy);
+        }
+
+        public void EditFigure(FigureProxy figureProxy)
+        {
+            // configure
+            FigureCollection.UpdateFigure(figureProxy);
+        }
+
+        public void RemoveFigure(FigureProxy figureProxy)
+        {
+            FigureCollection.RemoveFigure(figureProxy);
         }
     }
 }

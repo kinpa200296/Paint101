@@ -25,8 +25,10 @@ namespace Paint101.Desktop.ViewModels
             AppService.LoadPlugins();
 
             CanvasModel = new CanvasViewModel(PredefinedColors.White, 500, 500);
-            FigureLibrary = new FigureLibraryViewModel(AppService.PluginLibrary);
-            FigureCollection = new FigureCollectionViewModel(AppService.FigureCollection, CanvasModel);
+            AppService.SetCanvasRenderer(CanvasModel);
+
+            FigureLibrary = new FigureLibraryViewModel(AppService);
+            FigureCollection = new FigureCollectionViewModel(AppService);
         }
     }
 }
