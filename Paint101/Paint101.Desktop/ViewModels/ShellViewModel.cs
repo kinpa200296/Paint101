@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using Paint101.Api;
 
 namespace Paint101.Desktop.ViewModels
 {
@@ -7,20 +8,25 @@ namespace Paint101.Desktop.ViewModels
     /// </summary>
     public class ShellViewModel : Screen
     {
+        public AppService AppService { get; }
+
         public CanvasViewModel CanvasModel { get; }
+
+        public FigureLibraryViewModel FigureLibrary { get; }
+
+        public FigureCollectionViewModel FigureCollection { get; }
 
 
         public ShellViewModel()
         {
             DisplayName = "Paint101";
 
-            CanvasModel = new CanvasViewModel();
-        }
+            AppService = new AppService();
+            AppService.LoadPlugins();
 
-
-        public void Draw()
-        {
-            CanvasModel.Render();
+            CanvasModel = new CanvasViewModel(PredefinedColors.White, 500, 500);
+            FigureLibrary = new FigureLibraryViewModel(AppService.PluginLibrary);
+            FigureCollection = new FigureCollectionViewModel(AppService.FigureCollection, CanvasModel);
         }
     }
 }

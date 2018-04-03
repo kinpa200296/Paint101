@@ -2,15 +2,14 @@
 
 namespace Paint101.Api
 {
-    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
-    public class FigureAttribute : Attribute
+    public abstract class PluginAttribute : Attribute
     {
         public string DisplayName { get; set; }
 
         public string Description { get; set; }
 
 
-        public FigureAttribute(string displayName)
+        public PluginAttribute(string displayName)
         {
             DisplayName = displayName;
         }

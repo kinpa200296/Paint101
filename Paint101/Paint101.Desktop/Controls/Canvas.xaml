@@ -8,12 +8,12 @@
              d:DesignHeight="700" d:DesignWidth="700">
     <Grid Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Image Name="ImageCanvas" Margin="10"
-               HorizontalAlignment="Left" VerticalAlignment="Top"/>
+               HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>
 </UserControl>

@@ -9,11 +9,11 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="mkdir $(SolutionDir)FiguresOutput&#xD;&#xA;&#xD;&#xA;copy /y $(ProjectDir)$(OutDir)$(ProjectName).dll $(SolutionDir)FiguresOutput" />
+    <Exec Command="mkdir $(SolutionDir)PluginsOutput&#xD;&#xA;&#xD;&#xA;copy /y $(ProjectDir)$(OutDir)$(ProjectName).dll $(SolutionDir)PluginsOutput" />
   </Target>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="del $(SolutionDir)FiguresOutput\$(ProjectName).dll" />
+    <Exec Command="if exist $(SolutionDir)PluginsOutput\$(ProjectName).dll del /q $(SolutionDir)PluginsOutput\$(ProjectName).dll" />
   </Target>
 
 </Project>

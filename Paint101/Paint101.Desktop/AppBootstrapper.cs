@@ -22,6 +22,8 @@ namespace Paint101.Desktop
 
         protected override void Configure()
         {
+            NlogHelper.Configure();
+
             _container = new SimpleContainer();
 
             _container.Singleton<IWindowManager, WindowManager>();

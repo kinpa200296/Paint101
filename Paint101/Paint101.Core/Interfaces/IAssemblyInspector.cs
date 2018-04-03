@@ -9,6 +9,6 @@ namespace Paint101.Core
         /// Inspects assembly to find compatible types
         /// </summary>
         /// <returns>List of compatible types</returns>
-        List<IFigureDescriptor> InspectAssembly(Assembly assembly);
+        List<IPluginDescriptor> InspectAssembly(Assembly assembly);
     }
 }
