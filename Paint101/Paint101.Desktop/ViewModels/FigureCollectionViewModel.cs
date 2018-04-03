@@ -1,5 +1,7 @@
 ﻿using Caliburn.Micro;
+using NLog;
 using Paint101.Core;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -7,9 +9,12 @@ namespace Paint101.Desktop.ViewModels
 {
     public class FigureCollectionViewModel : PropertyChangedBase
     {
+        private readonly ILogger _logger = NLog.LogManager.GetCurrentClassLogger();
+
         private AppService _appService;
         private FigureViewModel _selectedFigure;
         private int _selectedFigureIndex;
+        private bool _disabledSaving;
 
 
         public ObservableCollection<FigureViewModel> Figures { get; }
@@ -52,10 +57,8 @@ namespace Paint101.Desktop.ViewModels
             _appService.FigureCollection.Removed += FigureCollectionOnRemoved;
 
             Figures = new ObservableCollection<FigureViewModel>();
-            foreach (var figure in _appService.FigureCollection.Figures)
-            {
-                Figures.Add(new FigureViewModel(figure));
-            }
+
+            LoadFigures();
         }
 
 
@@ -88,7 +91,7 @@ namespace Paint101.Desktop.ViewModels
             _selectedFigureIndex--;
             NotifyOfPropertyChange(nameof(CanMoveUp));
             NotifyOfPropertyChange(nameof(CanMoveDown));
-            Render();
+            FiguresUpdated();
         }
 
         public void MoveDown()
@@ -99,20 +102,20 @@ namespace Paint101.Desktop.ViewModels
             _selectedFigureIndex++;
             NotifyOfPropertyChange(nameof(CanMoveUp));
             NotifyOfPropertyChange(nameof(CanMoveDown));
-            Render();
+            FiguresUpdated();
         }
 
 
         private void FigureCollectionOnAdded(object sender, FigureProxy e)
         {
             Figures.Add(new FigureViewModel(e));
-            Render();
+            FiguresUpdated();
             NotifyOfPropertyChange(nameof(CanRender));
         }
 
         private void FigureCollectionOnUpdated(object sender, FigureProxy e)
         {
-            Render();
+            FiguresUpdated();
         }
 
         private void FigureCollectionOnRemoved(object sender, FigureProxy e)
@@ -122,8 +125,56 @@ namespace Paint101.Desktop.ViewModels
             {
                 Figures.Remove(figureVM);
             }
-            Render();
+            FiguresUpdated();
             NotifyOfPropertyChange(nameof(CanRender));
+        }
+
+        private void FiguresUpdated()
+        {
+            Render();
+            SaveFigures();
+        }
+
+        private void LoadFigures()
+        {
+            _disabledSaving = true;
+
+            try
+            {
+                var figures = _appService.FigureStorage.LoadFigures();
+                foreach (var figure in figures)
+                {
+                    var descriptor = (IFigureDescriptor)_appService.PluginLibrary.Get(figure.Key);
+                    if (descriptor == null)
+                    {
+                        _logger.Error($"Plugin '{figure.Key}' can't be found");
+                        continue;
+                    }
+                    _appService.AddFigure(descriptor, figure);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error($"Failed to load figures: {ex.ToString()}");
+            }
+
+
+            _disabledSaving = false;
+        }
+
+        private void SaveFigures()
+        {
+            if (_disabledSaving)
+                return;
+
+            try
+            {
+                _appService.FigureStorage.SaveFigures(Figures.Select(f => f.Proxy.SaveConfig()).ToList());
+            }
+            catch (Exception ex)
+            {
+                _logger.Error($"Failed to save figures: {ex.ToString()}");
+            }
         }
     }
 }

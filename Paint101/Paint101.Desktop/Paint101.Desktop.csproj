@@ -77,9 +77,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppBootstrapper.cs" />
+    <Compile Include="Infrastructure\IFigureConfigStorage.cs" />
     <Compile Include="Infrastructure\NlogHelper.cs" />
     <Compile Include="Infrastructure\NlogLoggerWrapper.cs" />
     <Compile Include="Models\AppService.cs" />
+    <Compile Include="Models\PersistanceModel.cs" />
     <Compile Include="ViewModels\CanvasViewModel.cs" />
     <Compile Include="ViewModels\FigureCollectionViewModel.cs" />
     <Compile Include="ViewModels\FigureLibraryViewModel.cs" />

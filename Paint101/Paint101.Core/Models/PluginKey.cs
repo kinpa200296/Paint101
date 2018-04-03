@@ -1,5 +1,8 @@
-﻿namespace Paint101.Core
+﻿using System;
+
+namespace Paint101.Core
 {
+    [Serializable]
     public class PluginKey
     {
         public string AssemblyPath { get; }

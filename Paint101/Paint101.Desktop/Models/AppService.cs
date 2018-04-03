@@ -15,6 +15,8 @@ namespace Paint101.Desktop
 
         public IWindowManager WindowManager { get; }
 
+        public IFigureConfigStorage FigureStorage { get; }
+
 
         public AppService()
         {
@@ -22,6 +24,7 @@ namespace Paint101.Desktop
             PluginLibrary = new PluginLibrary();
             FigureCollection = new FigureCollection();
             WindowManager = new WindowManager();
+            FigureStorage = new PersistanceModel(this);
         }
 
 
@@ -42,6 +45,13 @@ namespace Paint101.Desktop
             FigureCollection.AddFigure(figureProxy);
             var figureSetup = new FigureSetupViewModel(this, figureProxy);
             WindowManager.ShowDialog(figureSetup);
+        }
+
+        public void AddFigure(IFigureDescriptor descriptor, FigureConfig config)
+        {
+            var figureProxy = new FigureProxy(descriptor);
+            figureProxy.LoadConfig(config);
+            FigureCollection.AddFigure(figureProxy);
         }
 
         public void EditFigure(FigureProxy figureProxy)

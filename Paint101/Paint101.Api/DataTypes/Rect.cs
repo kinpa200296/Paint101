@@ -1,8 +1,11 @@
-﻿namespace Paint101.Api
+﻿using System;
+
+namespace Paint101.Api
 {
     /// <summary>
     /// Simple rectangle based on 2 points
     /// </summary>
+    [Serializable]
     public class Rect
     {
         public int X1 { get; set; }

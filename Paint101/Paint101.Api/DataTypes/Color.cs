@@ -1,8 +1,11 @@
-﻿namespace Paint101.Api
+﻿using System;
+
+namespace Paint101.Api
 {
     /// <summary>
     /// Represents ARGB color
     /// </summary>
+    [Serializable]
     public class Color
     {
         /// <summary>

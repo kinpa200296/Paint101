@@ -30,5 +30,11 @@ namespace Paint101.Desktop.ViewModels
             FigureLibrary = new FigureLibraryViewModel(AppService);
             FigureCollection = new FigureCollectionViewModel(AppService);
         }
+
+
+        protected override void OnViewLoaded(object view)
+        {
+            AppService.CanvasRenderer.Render(AppService.FigureCollection);
+        }
     }
 }

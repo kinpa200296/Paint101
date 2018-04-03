@@ -37,7 +37,7 @@ namespace Paint101.Desktop.ViewModels
 
         private ParameterViewModel CreateParameter(Core.Parameter parameter, ParameterCollection parameters)
         {
-            System.Action updateCallback = () => _appService.CanvasRenderer.Render(_appService.FigureCollection);
+            System.Action updateCallback = () => _appService.FigureCollection.UpdateFigure(_figureProxy);
             switch (parameter.Type)
             {
                 case Api.ParameterTypes.Int32:
