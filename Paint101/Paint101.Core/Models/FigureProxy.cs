@@ -9,9 +9,14 @@ namespace Paint101.Core
         private Figure _figure;
 
 
+        public ParameterCollection Parameters { get; }
+
+
         public FigureProxy(IFigureDescriptor descriptor) : base(descriptor)
         {
             _figure = descriptor.CreateInstance();
+            Parameters = new ParameterCollection();
+            RegisterParameters();
         }
 
 
@@ -19,11 +24,24 @@ namespace Paint101.Core
         {
             try
             {
-                _figure.Draw(canvas);
+                _figure.Draw(canvas, Parameters);
             }
             catch (Exception ex)
             {
                 _logger.LogError($"{Metadata.DisplayName} failed to execute Draw()", ex);
+            }
+        }
+
+
+        private void RegisterParameters()
+        {
+            try
+            {
+                _figure.RegisterParameters(Parameters);
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError($"{Metadata.DisplayName} failed to execute RegisterParameters()", ex);
             }
         }
     }

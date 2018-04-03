@@ -1,4 +1,6 @@
-﻿using Paint101.Core;
+﻿using Caliburn.Micro;
+using Paint101.Core;
+using Paint101.Desktop.ViewModels;
 using System.IO;
 
 namespace Paint101.Desktop
@@ -11,12 +13,15 @@ namespace Paint101.Desktop
 
         public ICanvasRenderer CanvasRenderer { get; private set; }
 
+        public IWindowManager WindowManager { get; }
+
 
         public AppService()
         {
             CoreLoggerFactory.SetFactoryMethod(name => new NlogLoggerWrapper(name));
             PluginLibrary = new PluginLibrary();
             FigureCollection = new FigureCollection();
+            WindowManager = new WindowManager();
         }
 
 
@@ -34,14 +39,15 @@ namespace Paint101.Desktop
         public void AddFigure(IFigureDescriptor descriptor)
         {
             var figureProxy = new FigureProxy(descriptor);
-            // configure
             FigureCollection.AddFigure(figureProxy);
+            var figureSetup = new FigureSetupViewModel(this, figureProxy);
+            WindowManager.ShowDialog(figureSetup);
         }
 
         public void EditFigure(FigureProxy figureProxy)
         {
-            // configure
-            FigureCollection.UpdateFigure(figureProxy);
+            var figureSetup = new FigureSetupViewModel(this, figureProxy);
+            WindowManager.ShowDialog(figureSetup);
         }
 
         public void RemoveFigure(FigureProxy figureProxy)

@@ -83,9 +83,20 @@
     <Compile Include="ViewModels\CanvasViewModel.cs" />
     <Compile Include="ViewModels\FigureCollectionViewModel.cs" />
     <Compile Include="ViewModels\FigureLibraryViewModel.cs" />
+    <Compile Include="ViewModels\FigureSetupViewModel.cs" />
     <Compile Include="ViewModels\FigureViewModel.cs" />
     <Compile Include="ViewModels\LibraryFigureViewModel.cs" />
+    <Compile Include="ViewModels\Parameters\ColorParameterViewModel.cs" />
+    <Compile Include="ViewModels\Parameters\DoubleParameterViewModel.cs" />
+    <Compile Include="ViewModels\Parameters\Int32ParameterViewModel.cs" />
+    <Compile Include="ViewModels\Parameters\ParameterViewModel.cs" />
+    <Compile Include="ViewModels\Parameters\PointParameterViewModel.cs" />
+    <Compile Include="ViewModels\Parameters\RectParameterViewModel.cs" />
+    <Compile Include="ViewModels\Parameters\StringParameterViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
+    <Compile Include="Views\FigureSetupView.xaml.cs">
+      <DependentUpon>FigureSetupView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
     </Compile>
@@ -100,6 +111,10 @@
     <Compile Include="Controls\Canvas.xaml.cs">
       <DependentUpon>Canvas.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\FigureSetupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ShellView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

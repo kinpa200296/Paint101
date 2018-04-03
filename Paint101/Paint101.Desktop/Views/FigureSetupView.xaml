@@ -1,0 +1,149 @@
+﻿<Window x:Class="Paint101.Desktop.Views.FigureSetupView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Paint101.Desktop.Views"
+        xmlns:vm="clr-namespace:Paint101.Desktop.ViewModels"
+        xmlns:cal="http://www.caliburnproject.org"
+        mc:Ignorable="d"
+        Height="500" Width="400">
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vm:Int32ParameterViewModel}">
+            <Grid Margin="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" MinWidth="80"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="{Binding DisplayName}"/>
+                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Value, Mode=TwoWay, Delay=250, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:DoubleParameterViewModel}">
+            <Grid Margin="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" MinWidth="80"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="{Binding DisplayName}"/>
+                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Value, Mode=TwoWay, Delay=250, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:StringParameterViewModel}">
+            <Grid Margin="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" MinWidth="80"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="{Binding DisplayName}"/>
+                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Value, Mode=TwoWay, Delay=250, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:PointParameterViewModel}">
+            <Grid Margin="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" MinWidth="80"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="{Binding DisplayName}"/>
+                <DockPanel Grid.Row="0" Grid.Column="1">
+                    <Label DockPanel.Dock="Left" Content="X: "/>
+                    <TextBox Text="{Binding X, Mode=TwoWay, Delay=250, UpdateSourceTrigger=PropertyChanged}"/>
+                </DockPanel>
+                <DockPanel Grid.Row="0" Grid.Column="2">
+                    <Label DockPanel.Dock="Left" Content="Y: "/>
+                    <TextBox Text="{Binding Y, Mode=TwoWay, Delay=250, UpdateSourceTrigger=PropertyChanged}"/>
+                </DockPanel>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:RectParameterViewModel}">
+            <Grid Margin="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" MinWidth="80"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="{Binding DisplayName}"/>
+                <DockPanel Grid.Row="0" Grid.Column="1">
+                    <Label DockPanel.Dock="Left" Content="X1: "/>
+                    <TextBox Text="{Binding X1, Mode=TwoWay, Delay=250, UpdateSourceTrigger=PropertyChanged}"/>
+                </DockPanel>
+                <DockPanel Grid.Row="0" Grid.Column="2">
+                    <Label DockPanel.Dock="Left" Content="Y1: "/>
+                    <TextBox Text="{Binding Y1, Mode=TwoWay, Delay=250, UpdateSourceTrigger=PropertyChanged}"/>
+                </DockPanel>
+                <DockPanel Grid.Row="0" Grid.Column="3">
+                    <Label DockPanel.Dock="Left" Content="X2: "/>
+                    <TextBox Text="{Binding X2, Mode=TwoWay, Delay=250, UpdateSourceTrigger=PropertyChanged}"/>
+                </DockPanel>
+                <DockPanel Grid.Row="0" Grid.Column="4">
+                    <Label DockPanel.Dock="Left" Content="Y2: "/>
+                    <TextBox Text="{Binding Y2, Mode=TwoWay, Delay=250, UpdateSourceTrigger=PropertyChanged}"/>
+                </DockPanel>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ColorParameterViewModel}">
+            <Grid Margin="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" MinWidth="80"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="{Binding DisplayName}"/>
+                <DockPanel Grid.Row="0" Grid.Column="1">
+                    <Label DockPanel.Dock="Left" Content="A: "/>
+                    <TextBox Text="{Binding Alpha, Mode=TwoWay, Delay=250, UpdateSourceTrigger=PropertyChanged}"/>
+                </DockPanel>
+                <DockPanel Grid.Row="0" Grid.Column="2">
+                    <Label DockPanel.Dock="Left" Content="R: "/>
+                    <TextBox Text="{Binding Red, Mode=TwoWay, Delay=250, UpdateSourceTrigger=PropertyChanged}"/>
+                </DockPanel>
+                <DockPanel Grid.Row="0" Grid.Column="3">
+                    <Label DockPanel.Dock="Left" Content="G: "/>
+                    <TextBox Text="{Binding Green, Mode=TwoWay, Delay=250, UpdateSourceTrigger=PropertyChanged}"/>
+                </DockPanel>
+                <DockPanel Grid.Row="0" Grid.Column="4">
+                    <Label DockPanel.Dock="Left" Content="B: "/>
+                    <TextBox Text="{Binding Blue, Mode=TwoWay, Delay=250, UpdateSourceTrigger=PropertyChanged}"/>
+                </DockPanel>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="1" Grid.Column="0" Content="Close"
+                cal:Message.Attach="Close"/>
+        <ItemsControl Margin="5,20,5,5" ItemsSource="{Binding Parameters}"/>
+    </Grid>
+</Window>
