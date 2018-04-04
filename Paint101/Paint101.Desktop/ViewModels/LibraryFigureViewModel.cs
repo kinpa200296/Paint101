@@ -9,7 +9,7 @@ namespace Paint101.Desktop.ViewModels
 
         public string DisplayName => Descriptor.Metadata.DisplayName;
 
-        public string Desctiption => Descriptor.Metadata.Description;
+        public string Description => Descriptor.Metadata.Description;
 
 
         public LibraryFigureViewModel(IFigureDescriptor figureDescriptor)

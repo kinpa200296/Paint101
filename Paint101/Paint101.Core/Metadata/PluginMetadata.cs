@@ -1,6 +1,6 @@
 ﻿namespace Paint101.Core
 {
-    public abstract class PluginMetadata
+    public abstract class PluginMetadata : IPluginMetadata
     {
         public PluginTypes Type { get; }
 

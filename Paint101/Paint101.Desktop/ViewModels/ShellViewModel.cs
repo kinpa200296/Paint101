@@ -16,6 +16,8 @@ namespace Paint101.Desktop.ViewModels
 
         public FigureCollectionViewModel FigureCollection { get; }
 
+        public SettingsViewModel Settings { get; }
+
 
         public ShellViewModel()
         {
@@ -27,6 +29,7 @@ namespace Paint101.Desktop.ViewModels
             CanvasModel = new CanvasViewModel(PredefinedColors.White, 500, 500);
             AppService.SetCanvasRenderer(CanvasModel);
 
+            Settings = new SettingsViewModel(AppService);
             FigureLibrary = new FigureLibraryViewModel(AppService);
             FigureCollection = new FigureCollectionViewModel(AppService);
         }

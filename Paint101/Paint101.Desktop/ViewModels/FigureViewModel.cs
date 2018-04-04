@@ -9,6 +9,8 @@ namespace Paint101.Desktop.ViewModels
 
         public string DisplayName => Proxy.Metadata.DisplayName;
 
+        public string Description => Proxy.Metadata.Description;
+
 
         public FigureViewModel(FigureProxy figure)
         {

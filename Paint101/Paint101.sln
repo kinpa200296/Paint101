@@ -17,19 +17,25 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Paint101.Core", "Paint101.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Paint101.Api", "Paint101.Api\Paint101.Api.csproj", "{94216942-E8DA-4EED-AE79-303203974DDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paint101.Line", "StandardFigures\Paint101.Line\Paint101.Line.csproj", "{803964B8-18EA-4EFD-AA92-7298A9E39907}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Paint101.Line", "StandardFigures\Paint101.Line\Paint101.Line.csproj", "{803964B8-18EA-4EFD-AA92-7298A9E39907}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StandardFigures", "StandardFigures", "{0091DF72-BFFF-4B64-A112-8C4F61270B79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paint101.FrameTriangle", "StandardFigures\Paint101.FrameTriangle\Paint101.FrameTriangle.csproj", "{CEFB242F-15FE-4661-944A-F1CC2CA30B6A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Paint101.FrameTriangle", "StandardFigures\Paint101.FrameTriangle\Paint101.FrameTriangle.csproj", "{CEFB242F-15FE-4661-944A-F1CC2CA30B6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paint101.FrameRectangle", "StandardFigures\Paint101.FrameRectangle\Paint101.FrameRectangle.csproj", "{E2294E07-0109-46E3-9705-831C2DAF74E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Paint101.FrameRectangle", "StandardFigures\Paint101.FrameRectangle\Paint101.FrameRectangle.csproj", "{E2294E07-0109-46E3-9705-831C2DAF74E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paint101.FrameEllipse", "StandardFigures\Paint101.FrameEllipse\Paint101.FrameEllipse.csproj", "{3CF1A5CB-BF5E-4629-8970-BF74E3410AE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Paint101.FrameEllipse", "StandardFigures\Paint101.FrameEllipse\Paint101.FrameEllipse.csproj", "{3CF1A5CB-BF5E-4629-8970-BF74E3410AE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paint101.Ellipse", "StandardFigures\Paint101.Ellipse\Paint101.Ellipse.csproj", "{29546282-7083-4E6C-82F6-B99078E5A955}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Paint101.Ellipse", "StandardFigures\Paint101.Ellipse\Paint101.Ellipse.csproj", "{29546282-7083-4E6C-82F6-B99078E5A955}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paint101.Rectangle", "StandardFigures\Paint101.Rectangle\Paint101.Rectangle.csproj", "{3FE9E912-2FC7-4F5C-9A45-73F22459A2ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Paint101.Rectangle", "StandardFigures\Paint101.Rectangle\Paint101.Rectangle.csproj", "{3FE9E912-2FC7-4F5C-9A45-73F22459A2ED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StandardExtensions", "StandardExtensions", "{1341B6B3-0231-4BFB-9CA2-A050CBF47197}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paint101.Compressor", "StandardExtensions\Paint101.Compressor\Paint101.Compressor.csproj", "{F56C1D0F-DB2C-442B-868C-8956B64FDB2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paint101.Protector", "StandardExtensions\Paint101.Protector\Paint101.Protector.csproj", "{B21FBC61-D79F-4226-97D7-5A1525DF7144}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +79,14 @@ Global
 		{3FE9E912-2FC7-4F5C-9A45-73F22459A2ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FE9E912-2FC7-4F5C-9A45-73F22459A2ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FE9E912-2FC7-4F5C-9A45-73F22459A2ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F56C1D0F-DB2C-442B-868C-8956B64FDB2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F56C1D0F-DB2C-442B-868C-8956B64FDB2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F56C1D0F-DB2C-442B-868C-8956B64FDB2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F56C1D0F-DB2C-442B-868C-8956B64FDB2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B21FBC61-D79F-4226-97D7-5A1525DF7144}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B21FBC61-D79F-4226-97D7-5A1525DF7144}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B21FBC61-D79F-4226-97D7-5A1525DF7144}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B21FBC61-D79F-4226-97D7-5A1525DF7144}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,6 +98,8 @@ Global
 		{3CF1A5CB-BF5E-4629-8970-BF74E3410AE7} = {0091DF72-BFFF-4B64-A112-8C4F61270B79}
 		{29546282-7083-4E6C-82F6-B99078E5A955} = {0091DF72-BFFF-4B64-A112-8C4F61270B79}
 		{3FE9E912-2FC7-4F5C-9A45-73F22459A2ED} = {0091DF72-BFFF-4B64-A112-8C4F61270B79}
+		{F56C1D0F-DB2C-442B-868C-8956B64FDB2B} = {1341B6B3-0231-4BFB-9CA2-A050CBF47197}
+		{B21FBC61-D79F-4226-97D7-5A1525DF7144} = {1341B6B3-0231-4BFB-9CA2-A050CBF47197}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AEEE6A16-13D8-4837-BAA5-FBEBC78B6152}

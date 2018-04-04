@@ -43,40 +43,65 @@
             </ListView>
         </Grid>
 
-        <Grid Grid.Row="0" Grid.Column="2" MinWidth="150"
-              DataContext="{Binding FigureCollection}">
+        <Grid Grid.Row="0" Grid.Column="2" MinWidth="150">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Button Grid.Row="0" Grid.Column="0"
+            <Grid Grid.Row="0" Grid.Column="0" 
+                  DataContext="{Binding Settings}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="Extension: "/>
+                <ComboBox Grid.Row="0" Grid.Column="1"
+                          ItemsSource="{Binding Extensions}"
+                          SelectedItem="{Binding SelectedExtension}"
+                          DisplayMemberPath="DisplayName"/>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="0"
+                  DataContext="{Binding FigureCollection}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="1" Grid.Column="0" Visibility="Collapsed"
                 Content="Up" cal:Message.Attach="MoveUp"/>
-            <Button Grid.Row="0" Grid.Column="1"
+                <Button Grid.Row="1" Grid.Column="1" Visibility="Collapsed"
                 Content="Down" cal:Message.Attach="MoveDown"/>
-            <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                       Name="FigureCollectionList" ItemsSource="{Binding Figures}"
                       SelectedItem="{Binding SelectedFigure}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Tag="{Binding DataContext, ElementName=FigureCollectionList}">
-                            <Grid.ContextMenu>
-                                <ContextMenu cal:Bind.ModelWithoutContext="{Binding Path=PlacementTarget.Tag, RelativeSource={RelativeSource Self}}">
-                                    <MenuItem Header="Edit" cal:Message.Attach="Edit($datacontext)"/>
-                                    <MenuItem Header="Remove" cal:Message.Attach="Remove($datacontext)"/>
-                                </ContextMenu>
-                            </Grid.ContextMenu>
-                            <TextBlock Text="{Binding DisplayName}" ToolTip="{Binding Description}"/>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Tag="{Binding DataContext, ElementName=FigureCollectionList}">
+                                <Grid.ContextMenu>
+                                    <ContextMenu cal:Bind.ModelWithoutContext="{Binding Path=PlacementTarget.Tag, RelativeSource={RelativeSource Self}}">
+                                        <MenuItem Header="Edit" cal:Message.Attach="Edit($datacontext)"/>
+                                        <MenuItem Header="Remove" cal:Message.Attach="Remove($datacontext)"/>
+                                    </ContextMenu>
+                                </Grid.ContextMenu>
+                                <TextBlock Text="{Binding DisplayName}" ToolTip="{Binding Description}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
                 Content="Redraw" cal:Message.Attach="Render"/>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

@@ -17,6 +17,8 @@ namespace Paint101.Desktop
 
         public IFigureConfigStorage FigureStorage { get; }
 
+        public SettingsModel Settings { get; }
+
 
         public AppService()
         {
@@ -25,6 +27,7 @@ namespace Paint101.Desktop
             FigureCollection = new FigureCollection();
             WindowManager = new WindowManager();
             FigureStorage = new PersistanceModel(this);
+            Settings = new SettingsModel();
         }
 
 

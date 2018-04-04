@@ -58,6 +58,7 @@ namespace Paint101.Desktop.ViewModels
 
             Figures = new ObservableCollection<FigureViewModel>();
 
+            _disabledSaving = true;
             LoadFigures();
         }
 

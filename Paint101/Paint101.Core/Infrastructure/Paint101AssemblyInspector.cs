@@ -56,7 +56,7 @@ namespace Paint101.Core
                 return null;
 
             var key = new PluginKey(type.Assembly.Location, type.FullName);
-            var metadata = new FigureMetadata();
+            var metadata = new ExtensionMetadata();
             SetPluginMetadata(metadata, extensionAttribute, type);
 
             var descriptor = new ExtensionDescriptor(key, metadata, type);

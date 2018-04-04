@@ -82,7 +82,9 @@
     <Compile Include="Infrastructure\NlogLoggerWrapper.cs" />
     <Compile Include="Models\AppService.cs" />
     <Compile Include="Models\PersistanceModel.cs" />
+    <Compile Include="Models\SettingsModel.cs" />
     <Compile Include="ViewModels\CanvasViewModel.cs" />
+    <Compile Include="ViewModels\ExtensionViewModel.cs" />
     <Compile Include="ViewModels\FigureCollectionViewModel.cs" />
     <Compile Include="ViewModels\FigureLibraryViewModel.cs" />
     <Compile Include="ViewModels\FigureSetupViewModel.cs" />
@@ -95,6 +97,7 @@
     <Compile Include="ViewModels\Parameters\PointParameterViewModel.cs" />
     <Compile Include="ViewModels\Parameters\RectParameterViewModel.cs" />
     <Compile Include="ViewModels\Parameters\StringParameterViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="Views\FigureSetupView.xaml.cs">
       <DependentUpon>FigureSetupView.xaml</DependentUpon>
