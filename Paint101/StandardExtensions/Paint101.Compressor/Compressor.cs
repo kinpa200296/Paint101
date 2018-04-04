@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using Paint101.Api;
+using System.IO.Compression;
 
 namespace Paint101.Compressor
 {
@@ -8,12 +9,22 @@ namespace Paint101.Compressor
     {
         public override Stream OnDeserializing(Stream stream)
         {
-            throw new System.NotImplementedException();
+            var memoryStream = new MemoryStream();
+            using (var zipStream = new GZipStream(stream, CompressionMode.Decompress, true))
+            {
+                zipStream.CopyTo(memoryStream);
+            }
+            return memoryStream;
         }
 
         public override Stream OnSerialized(Stream stream)
         {
-            throw new System.NotImplementedException();
+            var memoryStream = new MemoryStream();
+            using (var zipStream = new GZipStream(memoryStream, CompressionMode.Compress, true))
+            {
+                stream.CopyTo(zipStream);
+            }
+            return memoryStream;
         }
     }
 }

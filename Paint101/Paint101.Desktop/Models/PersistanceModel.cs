@@ -32,10 +32,36 @@ namespace Paint101.Desktop
 
             try
             {
-                using (var file = File.OpenWrite(figuresPath))
+                byte[] bytes;
+                using (var stream = new MemoryStream())
                 {
                     var serializer = new BinaryFormatter();
-                    serializer.Serialize(file, figures);
+                    serializer.Serialize(stream, figures);
+                    bytes = stream.ToArray();
+                }
+
+                if (!string.IsNullOrWhiteSpace(_appService.Settings.SelectedExtension.AssemblyPath))
+                {
+                    var descriptor = (IExtensionDescriptor)_appService.PluginLibrary.Get(_appService.Settings.SelectedExtension);
+                    var extension = new ExtensionProxy(descriptor);
+                    using (var input = new MemoryStream(bytes))
+                    {
+                        var output = extension.OnSerialized(input);
+                        if (output != null)
+                        {
+                            using (output)
+                            {
+                                bytes = new byte[output.Length];
+                                output.Seek(0, SeekOrigin.Begin);
+                                output.Read(bytes, 0, (int)output.Length);
+                            }
+                        }
+                    }
+                }
+
+                using (var file = File.Create(figuresPath))
+                {
+                    file.Write(bytes, 0, bytes.Length);
                 }
             }
             catch (Exception ex)
@@ -56,10 +82,31 @@ namespace Paint101.Desktop
             {
                 try
                 {
-                    using (var file = File.OpenRead(figuresPath))
+                    var bytes = File.ReadAllBytes(figuresPath);
+
+                    if (!string.IsNullOrWhiteSpace(_appService.Settings.SelectedExtension.AssemblyPath))
+                    {
+                        var descriptor = (IExtensionDescriptor)_appService.PluginLibrary.Get(_appService.Settings.SelectedExtension);
+                        var extension = new ExtensionProxy(descriptor);
+                        using (var input = new MemoryStream(bytes))
+                        {
+                            var output = extension.OnDeserializing(input);
+                            if (output != null)
+                            {
+                                using (output)
+                                {
+                                    bytes = new byte[output.Length];
+                                    output.Seek(0, SeekOrigin.Begin);
+                                    output.Read(bytes, 0, (int)output.Length);
+                                }
+                            }
+                        }
+                    }
+
+                    using (var stream = new MemoryStream(bytes))
                     {
                         var serializer = new BinaryFormatter();
-                        res = serializer.Deserialize(file) as List<FigureConfig>;
+                        res = serializer.Deserialize(stream) as List<FigureConfig>;
                     }
                 }
                 catch (Exception ex)

@@ -56,6 +56,8 @@ namespace Paint101.Desktop.ViewModels
             _appService.FigureCollection.Updated += FigureCollectionOnUpdated;
             _appService.FigureCollection.Removed += FigureCollectionOnRemoved;
 
+            _appService.Settings.Updated += SettingsOnUpdated;
+
             Figures = new ObservableCollection<FigureViewModel>();
 
             _disabledSaving = true;
@@ -128,6 +130,11 @@ namespace Paint101.Desktop.ViewModels
             }
             FiguresUpdated();
             NotifyOfPropertyChange(nameof(CanRender));
+        }
+
+        private void SettingsOnUpdated(object sender, EventArgs e)
+        {
+            SaveFigures();
         }
 
         private void FiguresUpdated()

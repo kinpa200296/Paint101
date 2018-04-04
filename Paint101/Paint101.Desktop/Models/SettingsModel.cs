@@ -40,7 +40,7 @@ namespace Paint101.Desktop
 
             try
             {
-                using (var file = File.OpenWrite(settingsPath))
+                using (var file = File.Create(settingsPath))
                 {
                     var serializer = new BinaryFormatter();
                     serializer.Serialize(file, SelectedExtension);
