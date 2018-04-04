@@ -34,6 +34,7 @@ namespace Paint101.Desktop
         public void LoadPlugins()
         {
             AssemblyLoader.RegisterAssemblyInspector(new Paint101AssemblyInspector());
+            AssemblyLoader.RegisterAssemblyInspector(new ShapeAssemblyInspector());
             AssemblyLoader.LoadPlugins(Path.Combine(Directory.GetCurrentDirectory(), "Plugins"), PluginLibrary);
         }
 

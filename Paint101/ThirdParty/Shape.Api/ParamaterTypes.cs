@@ -1,6 +1,6 @@
 ﻿namespace Shape.Api
 {
-    public enum ParamaterTypes
+    public enum ParamTypes
     {
         Int32,
     }

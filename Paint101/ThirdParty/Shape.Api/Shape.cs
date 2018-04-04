@@ -4,6 +4,6 @@
     {
         public abstract void AddParameters(IParameters parameters);
 
-        public abstract void DrawFigure(ICanvas canvas, IParameters parameters);
+        public abstract void DrawFigure(ISimpleCanvas canvas, IParameters parameters);
     }
 }

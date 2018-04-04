@@ -161,10 +161,6 @@
       <Project>{d8a85a83-655e-46e6-a866-23db51e74065}</Project>
       <Name>Paint101.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ThirdParty\Shape.Api\Shape.Api.csproj">
-      <Project>{fcecfde6-48d2-4913-bfcc-0502faf8dedc}</Project>
-      <Name>Shape.Api</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

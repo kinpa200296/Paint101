@@ -7,14 +7,14 @@ namespace Shape.ThickRectangleFrame
     {
         public override void AddParameters(IParameters parameters)
         {
-            parameters.AddParameter("X1", ParamaterTypes.Int32, 50, "X1");
-            parameters.AddParameter("Y1", ParamaterTypes.Int32, 50, "Y1");
-            parameters.AddParameter("X2", ParamaterTypes.Int32, 100, "X2");
-            parameters.AddParameter("Y2", ParamaterTypes.Int32, 100, "Y2");
-            parameters.AddParameter("FrameThickness", ParamaterTypes.Int32, 1, "Frame Thickness");
+            parameters.AddParameter("X1", ParamTypes.Int32, 50, "X1");
+            parameters.AddParameter("Y1", ParamTypes.Int32, 50, "Y1");
+            parameters.AddParameter("X2", ParamTypes.Int32, 100, "X2");
+            parameters.AddParameter("Y2", ParamTypes.Int32, 100, "Y2");
+            parameters.AddParameter("FrameThickness", ParamTypes.Int32, 1, "Frame Thickness");
         }
 
-        public override void DrawFigure(ICanvas canvas, IParameters parameters)
+        public override void DrawFigure(ISimpleCanvas canvas, IParameters parameters)
         {
             var x1 = (int)parameters.GetParameter("X1");
             var y1 = (int)parameters.GetParameter("Y1");
@@ -24,7 +24,7 @@ namespace Shape.ThickRectangleFrame
 
             for (var i = 0; i < frameThickness; i++)
             {
-                canvas.DrawFrame(x1 + i, y1 + i, x2 + i, y2 + i);
+                canvas.DrawFrame(x1 + i, y1 + i, x2 - i, y2 - i);
             }
         }
 

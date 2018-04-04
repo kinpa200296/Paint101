@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Paint101.Api\Paint101.Api.csproj" />
+    <ProjectReference Include="..\ThirdParty\Shape.Api\Shape.Api.csproj" />
   </ItemGroup>
 
 </Project>
